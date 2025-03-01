@@ -3,7 +3,7 @@
 # For more examples on how to use CMake, see https://github.com/android/ndk-samples.
 
 # Sets the minimum CMake version required for this project.
-cmake_minimum_required(VERSION 3.22.1)
+cmake_minimum_required(VERSION 3.31.5)
 
 # Declares the project name. The project name can be accessed via ${ PROJECT_NAME},
 # Since this is the top level CMakeLists.txt, the project name is also accessible
@@ -35,3 +35,33 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         # List libraries link to the target library
         android
         log)
+
+target_link_libraries( # Specifies the target library.
+        lr2
+        spdlog
+        mbedcrypto
+        # Links the target library to the log library
+        # included in the NDK.
+        ${log-lib} )
+
+
+
+add_library(spdlog STATIC IMPORTED)
+
+set_target_properties(spdlog PROPERTIES IMPORTED_LOCATION
+        /Users/ronim/Documents/main/Software_dev/LR2/libs/spdlog/build/${ANDROID_ABI}/libspdlog.a)
+target_include_directories(lr2 PUBLIC
+        /Users/ronim/Documents/main/Software_dev/LR2/libs/spdlog/spdlog/include
+)
+
+add_library(mbedcrypto SHARED IMPORTED)
+set_target_properties(mbedcrypto PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_CURRENT_SOURCE_DIR}/../nativeLibs/${ANDROID_ABI}/library/libmbedcrypto.so)
+
+target_include_directories(lr2 PUBLIC
+        /Users/ronim/Documents/main/Software_dev/LR2/libs/spdlog/spdlog/include
+        /Users/ronim/Documents/main/Software_dev/LR2/libs/mbedtls/mbedtls/include
+)
+
+
+

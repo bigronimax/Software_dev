@@ -14,6 +14,15 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild {
+            cmake {
+                cppFlags ("")
+            }
+        }
+        ndk {
+            abiFilters.addAll(listOf("x86", "x86_64", "arm64-v8a"))
+        }
     }
 
     buildTypes {
@@ -32,7 +41,7 @@ android {
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.22.1"
+            version = "3.31.5"
         }
     }
     buildFeatures {
@@ -45,7 +54,9 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
+    implementation(libs.activity)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation("commons-codec:commons-codec:1.15")
 }
