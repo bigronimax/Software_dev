@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/mbedtls/programs/cipher
+# Install script for directory: C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/mbedtls/programs/cipher
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -49,7 +49,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/cipher_aead_demo"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE FILES "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/arm64-v8a/programs/cipher/cipher_aead_demo")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE FILES "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/arm64-v8a/programs/cipher/cipher_aead_demo")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/cipher_aead_demo" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/cipher_aead_demo")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -59,12 +59,12 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/arm64-v8a/programs/cipher/CMakeFiles/cipher_aead_demo.dir/install-cxx-module-bmi-noconfig.cmake" OPTIONAL)
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/arm64-v8a/programs/cipher/CMakeFiles/cipher_aead_demo.dir/install-cxx-module-bmi-noconfig.cmake" OPTIONAL)
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/arm64-v8a/programs/cipher/install_local_manifest.txt"
+  file(WRITE "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/arm64-v8a/programs/cipher/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

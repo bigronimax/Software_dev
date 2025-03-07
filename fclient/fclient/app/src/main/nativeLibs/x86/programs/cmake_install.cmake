@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/mbedtls/programs
+# Install script for directory: C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/mbedtls/programs
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,23 +44,23 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/programs/aes/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/programs/cipher/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/programs/fuzz/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/programs/hash/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/programs/pkey/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/programs/psa/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/programs/random/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/programs/ssl/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/programs/test/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/programs/util/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/programs/x509/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/programs/aes/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/programs/cipher/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/programs/fuzz/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/programs/hash/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/programs/pkey/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/programs/psa/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/programs/random/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/programs/ssl/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/programs/test/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/programs/util/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/programs/x509/cmake_install.cmake")
 
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/programs/install_local_manifest.txt"
+  file(WRITE "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/programs/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

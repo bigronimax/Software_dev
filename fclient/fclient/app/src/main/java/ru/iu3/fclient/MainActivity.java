@@ -1,7 +1,5 @@
 package ru.iu3.fclient;
 
-import static androidx.core.database.sqlite.SQLiteDatabaseKt.transaction;
-
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,14 +8,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.io.IOUtils;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import ru.iu3.fclient.databinding.ActivityMainBinding;
 
@@ -28,14 +30,13 @@ interface TransactionEvents {
 
 public class MainActivity extends AppCompatActivity implements TransactionEvents {
 
-    // Used to load the 'fclient' library on application startup.
     static {
         System.loadLibrary("fclient");
         System.loadLibrary("mbedcrypto");
     }
 
     private ActivityMainBinding binding;
-    ActivityResultLauncher activityResultLauncher;
+    ActivityResultLauncher<Intent> activityResultLauncher;
     private String pin;
 
     @Override
@@ -45,16 +46,34 @@ public class MainActivity extends AppCompatActivity implements TransactionEvents
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        encryptionTest();
-        //transactionTest();
+        int res = initRng();
 
+        encryptionTest(res);
+        transactionTest();
+        httpTest();
+
+        activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+
+                        //String pin = data.getStringExtra("pin");
+                        assert data != null;
+                        pin = data.getStringExtra("pin");
+                        synchronized (MainActivity.this) {
+                            MainActivity.this.notifyAll();
+                        }
+                    }
+                }
+        );
     }
 
-    public static byte[] stringToHex(String s) {
+    public static byte[] stringToHex(String s){
         byte[] hex;
-        try {
+        try{
             hex = Hex.decodeHex(s.toCharArray());
-        } catch (DecoderException ex) {
+        } catch (DecoderException e) {
             hex = null;
         }
         return hex;
@@ -71,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements TransactionEvents
             try {
                 MainActivity.this.wait();
             } catch (Exception ex) {
-                Log.println(Log.ERROR, "pin", ex.getMessage());
+                Log.println(Log.ERROR, "MainActivity.enterPin", ex.getMessage());
             }
         }
         return pin;
@@ -85,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements TransactionEvents
     }
 
     // Метод, который возвращает название сайта
-    /*protected String getPageTitle(String html) {
+    protected String getPageTitle(String html) {
         Pattern pattern = Pattern.compile("<title>(.+?)</title>", Pattern.DOTALL);
         Matcher matcher = pattern.matcher(html);
 
@@ -97,13 +116,13 @@ public class MainActivity extends AppCompatActivity implements TransactionEvents
         }
 
         return p;
-    }*/
+    }
 
     // Метод, который тестирует работу http клиента
-    /*protected void testHttpClient() {
+    protected void testHttpClient() {
         new Thread(() -> {
             try {
-                HttpURLConnection uc = (HttpURLConnection) (new URL("http://10.0.2.2:8080/api/v1/title").openConnection());
+                HttpURLConnection uc = (HttpURLConnection) (new URL("http://10.0.2.2:8000/").openConnection());
                 InputStream inputStream = uc.getInputStream();
 
                 String html = IOUtils.toString(inputStream);
@@ -116,25 +135,15 @@ public class MainActivity extends AppCompatActivity implements TransactionEvents
                 Log.e("fapptag", "Http client fails", exception);
             }
         }).start();
-    }*/
-
-    /*@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        Button myButton = (Button) findViewById(R.id.sample_button);
     }
 
-    // Альтернативный метод нажатия кнопки
-    public void onButtonClick(View view) {
-        testHttpClient();
-    }*/
+    private void httpTest() {
+        binding.http.setOnClickListener(view -> {
+            testHttpClient();
+        });
+    }
 
     private void transactionTest() {
-        binding.test.setVisibility(View.GONE);
         binding.btn.setOnClickListener(view -> {
             new Thread(() -> {
                 try {
@@ -146,50 +155,22 @@ public class MainActivity extends AppCompatActivity implements TransactionEvents
                 }
             }).start();
         });
-
-        activityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Intent data = result.getData();
-
-                        //String pin = data.getStringExtra("pin");
-                        assert data != null;
-                        pin = data.getStringExtra("pin");
-                        synchronized (MainActivity.this) {
-                            MainActivity.this.notifyAll();
-                        }
-
-                        //Toast.makeText(MainActivity.this, pin, Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
     }
-    private void encryptionTest() {
-        binding.btn.setVisibility(View.GONE);
-        int res = initRng();
-        byte[] v = randomBytes(10);
-        Log.d("AAA", String.valueOf(res));
-        Log.d("AAA", Arrays.toString(v));
+    private void encryptionTest(int res) {
+        byte[] v = randomBytes(16);
+        Log.d("ENCRYPTION", String.valueOf(res));
+        Log.d("ENCRYPTION", Arrays.toString(v));
 
         byte[] key = new byte[16];
         byte[] data = "Blah bab".getBytes();
         byte[] encryptedData = encrypt(key, data);
         byte[] decryptedData = decrypt(key, encryptedData);
 
-        Log.d("BBB", Arrays.toString(key));
-        Log.d("BBB", Arrays.toString(data));
-        Log.d("BBB", Arrays.toString(encryptedData));
-        Log.d("BBB", Arrays.toString(decryptedData));
-
-        TextView testText = binding.test;
-        testText.setText(stringFromJNI());
+        Log.d("ENCRYPTION", Arrays.toString(key));
+        Log.d("ENCRYPTION", Arrays.toString(data));
+        Log.d("ENCRYPTION", Arrays.toString(encryptedData));
+        Log.d("ENCRYPTION", Arrays.toString(decryptedData));
     }
-
-    /**
-     * A native method that is implemented by the 'fclient' native library,
-     * which is packaged with this application.
-     */
     public native String stringFromJNI();
     public static native int initRng();
     public static native byte[] randomBytes(int no);

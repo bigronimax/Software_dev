@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/mbedtls/pkgconfig
+# Install script for directory: C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/mbedtls/pkgconfig
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -43,20 +43,20 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/pkgconfig/mbedcrypto.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/pkgconfig/mbedcrypto.pc")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/pkgconfig/mbedtls.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/pkgconfig/mbedtls.pc")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/pkgconfig/mbedx509.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/pkgconfig/mbedx509.pc")
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/pkgconfig/install_local_manifest.txt"
+  file(WRITE "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/pkgconfig/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

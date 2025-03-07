@@ -3,11 +3,8 @@
 #include <android/log.h>
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/android_sink.h>
-
 #include <mbedtls/entropy.h>
 #include <mbedtls/ctr_drbg.h>
-#include <mbedtls/des.h>
-
 #include <mbedtls/des.h>
 
 #define LOG_INFO(...) __android_log_print(ANDROID_LOG_INFO, "fclient_ndk", __VA_ARGS__)

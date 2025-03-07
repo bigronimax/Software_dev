@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/mbedtls
+# Install script for directory: C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/mbedtls
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,8 +44,8 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/MbedTLS" TYPE FILE FILES
-    "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/cmake/MbedTLSConfig.cmake"
-    "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/cmake/MbedTLSConfigVersion.cmake"
+    "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/cmake/MbedTLSConfig.cmake"
+    "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/cmake/MbedTLSConfigVersion.cmake"
     )
 endif()
 
@@ -53,7 +53,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/MbedTLS/MbedTLSTargets.cmake")
     file(DIFFERENT _cmake_export_file_changed FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/MbedTLS/MbedTLSTargets.cmake"
-         "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/CMakeFiles/Export/501c3fe65339b3965ef28cb8bf064996/MbedTLSTargets.cmake")
+         "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/CMakeFiles/Export/501c3fe65339b3965ef28cb8bf064996/MbedTLSTargets.cmake")
     if(_cmake_export_file_changed)
       file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/MbedTLS/MbedTLSTargets-*.cmake")
       if(_cmake_old_config_files)
@@ -66,27 +66,27 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     endif()
     unset(_cmake_export_file_changed)
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/MbedTLS" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/CMakeFiles/Export/501c3fe65339b3965ef28cb8bf064996/MbedTLSTargets.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/MbedTLS" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/CMakeFiles/Export/501c3fe65339b3965ef28cb8bf064996/MbedTLSTargets.cmake")
   if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^()$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/MbedTLS" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/CMakeFiles/Export/501c3fe65339b3965ef28cb8bf064996/MbedTLSTargets-noconfig.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/MbedTLS" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/CMakeFiles/Export/501c3fe65339b3965ef28cb8bf064996/MbedTLSTargets-noconfig.cmake")
   endif()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/framework/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/include/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/3rdparty/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/library/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/pkgconfig/cmake_install.cmake")
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/programs/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/framework/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/include/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/3rdparty/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/library/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/pkgconfig/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/programs/cmake_install.cmake")
 
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/install_local_manifest.txt"
+  file(WRITE "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -102,6 +102,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/build/x86/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/build/x86/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

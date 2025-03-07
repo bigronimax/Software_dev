@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/spdlog
+# Install script for directory: C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/spdlog
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,30 +44,30 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/build/arm64-v8a/example/cmake_install.cmake")
+  include("C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/build/arm64-v8a/example/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/spdlog/include/" REGEX "/fmt\\/bundled$" EXCLUDE)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/spdlog/include/" REGEX "/fmt\\/bundled$" EXCLUDE)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/build/arm64-v8a/libspdlog.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/build/arm64-v8a/libspdlog.a")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/spdlog/fmt/bundled/" TYPE DIRECTORY FILES "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/spdlog/include/spdlog/fmt/bundled/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/spdlog/fmt/bundled/" TYPE DIRECTORY FILES "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/spdlog/include/spdlog/fmt/bundled/")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/build/arm64-v8a/spdlog.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/build/arm64-v8a/spdlog.pc")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog/spdlogConfigTargets.cmake")
     file(DIFFERENT _cmake_export_file_changed FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog/spdlogConfigTargets.cmake"
-         "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/build/arm64-v8a/CMakeFiles/Export/5b93ed3f55f9d470264c31a33fb13826/spdlogConfigTargets.cmake")
+         "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/build/arm64-v8a/CMakeFiles/Export/5b93ed3f55f9d470264c31a33fb13826/spdlogConfigTargets.cmake")
     if(_cmake_export_file_changed)
       file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog/spdlogConfigTargets-*.cmake")
       if(_cmake_old_config_files)
@@ -80,23 +80,23 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     endif()
     unset(_cmake_export_file_changed)
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/build/arm64-v8a/CMakeFiles/Export/5b93ed3f55f9d470264c31a33fb13826/spdlogConfigTargets.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/build/arm64-v8a/CMakeFiles/Export/5b93ed3f55f9d470264c31a33fb13826/spdlogConfigTargets.cmake")
   if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/build/arm64-v8a/CMakeFiles/Export/5b93ed3f55f9d470264c31a33fb13826/spdlogConfigTargets-release.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog" TYPE FILE FILES "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/build/arm64-v8a/CMakeFiles/Export/5b93ed3f55f9d470264c31a33fb13826/spdlogConfigTargets-release.cmake")
   endif()
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/spdlog" TYPE FILE FILES
-    "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/build/arm64-v8a/spdlogConfig.cmake"
-    "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/build/arm64-v8a/spdlogConfigVersion.cmake"
+    "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/build/arm64-v8a/spdlogConfig.cmake"
+    "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/build/arm64-v8a/spdlogConfigVersion.cmake"
     )
 endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/build/arm64-v8a/install_local_manifest.txt"
+  file(WRITE "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/build/arm64-v8a/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -112,6 +112,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/build/arm64-v8a/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/build/arm64-v8a/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

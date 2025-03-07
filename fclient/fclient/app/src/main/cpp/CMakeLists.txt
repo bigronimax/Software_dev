@@ -49,9 +49,9 @@ target_link_libraries( # Specifies the target library.
 add_library(spdlog STATIC IMPORTED)
 
 set_target_properties(spdlog PROPERTIES IMPORTED_LOCATION
-        /Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/build/${ANDROID_ABI}/libspdlog.a)
+        /Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/build/${ANDROID_ABI}/libspdlog.a)
 target_include_directories(fclient PUBLIC
-        /Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/spdlog/include
+        /Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/spdlog/include
 )
 
 add_library(mbedcrypto SHARED IMPORTED)
@@ -59,8 +59,8 @@ set_target_properties(mbedcrypto PROPERTIES IMPORTED_LOCATION
         ${CMAKE_CURRENT_SOURCE_DIR}/../nativeLibs/${ANDROID_ABI}/library/libmbedcrypto.so)
 
 target_include_directories(fclient PUBLIC
-        /Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/spdlog/include
-        /Users/ronim/Documents/main/Software_dev/LR1/libs/mbedtls/mbedtls/include
+        /Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/spdlog/include
+        /Users/ronim/Documents/main/Software_dev/fclient/libs/mbedtls/mbedtls/include
 )
 
 

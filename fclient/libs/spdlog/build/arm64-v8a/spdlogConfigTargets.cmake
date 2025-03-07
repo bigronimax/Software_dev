@@ -51,7 +51,7 @@ add_library(spdlog::spdlog STATIC IMPORTED)
 
 set_target_properties(spdlog::spdlog PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "SPDLOG_COMPILED_LIB"
-  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/spdlog/include"
+  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/spdlog/include"
   INTERFACE_LINK_LIBRARIES "Threads::Threads;log"
 )
 
@@ -59,7 +59,7 @@ set_target_properties(spdlog::spdlog PROPERTIES
 add_library(spdlog::spdlog_header_only INTERFACE IMPORTED)
 
 set_target_properties(spdlog::spdlog_header_only PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/spdlog/include"
+  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/spdlog/include"
   INTERFACE_LINK_LIBRARIES "Threads::Threads;log"
 )
 
@@ -67,7 +67,7 @@ set_target_properties(spdlog::spdlog_header_only PROPERTIES
 set_property(TARGET spdlog::spdlog APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(spdlog::spdlog PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
-  IMPORTED_LOCATION_RELEASE "C:/Users/ronim/Documents/main/Software_dev/LR1/libs/spdlog/build/arm64-v8a/libspdlog.a"
+  IMPORTED_LOCATION_RELEASE "C:/Users/ronim/Documents/main/Software_dev/fclient/libs/spdlog/build/arm64-v8a/libspdlog.a"
   )
 
 # This file does not depend on other imported targets which have
