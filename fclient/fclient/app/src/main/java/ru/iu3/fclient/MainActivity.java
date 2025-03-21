@@ -122,12 +122,15 @@ public class MainActivity extends AppCompatActivity implements TransactionEvents
     protected void testHttpClient() {
         new Thread(() -> {
             try {
-                HttpURLConnection uc = (HttpURLConnection) (new URL("http://10.0.2.2:8000/").openConnection());
+                // HttpURLConnection uc = (HttpURLConnection) (new URL("http://10.0.2.2:8081/api/v1/title").openConnection());
+                HttpURLConnection uc = (HttpURLConnection) (new URL("http://192.168.15.37:8081/api/v1/title").openConnection());
+                Log.d("AAA", uc.toString());
                 InputStream inputStream = uc.getInputStream();
-
+                Log.d("AAA", inputStream.toString());
                 String html = IOUtils.toString(inputStream);
+                Log.d("AAA", html);
                 String title = getPageTitle(html);
-
+                Log.d("AAA", title);
                 runOnUiThread(() -> {
                     Toast.makeText(this, title, Toast.LENGTH_LONG).show();
                 });
