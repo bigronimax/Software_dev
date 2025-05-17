@@ -3,42 +3,33 @@ package ru.iu3.backend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
+@Getter
+@Setter
 @Entity
 @Table(name = "museums")
-@Access(AccessType.FIELD)
 public class Museum {
-
-    public Museum() { }
-    public Museum(Long id) {
-        this.id = id;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false, nullable = false)
-    public long id;
+    private Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
-    public String name;
+    @Column(name = "name", nullable = false, length = 128)
+    private String name;
 
-    @Column(name = "location")
-    public String location;
+    @Column(name = "location", length = 128)
+    private String location;
 
+    @OneToMany(mappedBy = "museum")
+    private List<Painting> paintings;
+
+    @ManyToMany(mappedBy = "museums")
     @JsonIgnore
-    @OneToMany
-    public List<Painting>
-            paintings = new ArrayList<>();
-
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "users_museums", joinColumns = @JoinColumn(name = "museum_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    public Set<User>
-            users = new HashSet<>();
+    private Set<User> users;
 }

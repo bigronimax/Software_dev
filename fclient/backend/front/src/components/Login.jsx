@@ -7,13 +7,14 @@ import {connect} from "react-redux";
 import {userActions} from "../utils/Rdx";
 import {useDispatch} from "react-redux";
 
-export default connect()( function Login() {
+function LoginComponent(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loggingIn, setLoggingIn] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [error_message, setErrorMessage] = useState(null); // Раскомментировал для отображения ошибок
     const nav = useNavigate();
-    const dispatch = useDispatch();
+    const { dispatch } = props;
 
     function handleChangeLogin(e) {
         setUsername(e.target.value);
@@ -26,35 +27,45 @@ export default connect()( function Login() {
     function handleSubmit(e) {
         e.preventDefault();
         setSubmitted(true);
+        setErrorMessage(null);
         setLoggingIn(true);
-        BackendService.login(username, password)
-            .then ( resp => {
-                console.log(resp.data);
-                setLoggingIn(false);
-                dispatch(userActions.login(resp.data))
-                nav("/home");
-            })
-            .catch( err => {
-                setLoggingIn(false);
-            })
-    }
 
-    return  (
+        if (username && password) {
+            BackendService.login(username, password)
+                .then(resp => {
+                    console.log("Login response:", resp.data);
+                    setLoggingIn(false);
+                    // Не нужно вызывать Utils.saveUser здесь, так как это делается в userActions.login
+                    dispatch(userActions.login(resp.data));
+                    nav("/home");
+                })
+                .catch(err => {
+                    if (err.response && err.response.status === 401)
+                        setErrorMessage("Ошибка авторизации");
+                    else
+                        setErrorMessage(err.message);
+                    setLoggingIn(false);
+                });
+        }
+    }
+    return (
         <div className="col-md-6 me-0">
             <h2>Вход</h2>
+            {error_message &&
+                <div className="alert alert-danger">{error_message}</div>}
             <form name="form" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="username">Логин</label>
-                    <input type="text" className={'form-control' + (submitted && !username ? ' is-invalid' : '' )}
+                    <input type="text" className={'form-control' + (submitted && !username ? ' is-invalid' : '')}
                            name="username" value={username}
-                           onChange={handleChangeLogin} />
+                           onChange={handleChangeLogin}/>
                     {submitted && !username && <div className="help-block text-danger">Введите имя пользователя</div>}
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Пароль</label>
-                    <input type="password" className={'form-control' + (submitted && !password ? ' is-invalid' : '' )}
+                    <input type="password" className={'form-control' + (submitted && !password ? ' is-invalid' : '')}
                            name="password" value={password}
-                           onChange={handleChangePassword} />
+                           onChange={handleChangePassword}/>
                     {submitted && !password &&
                         <div className="help-block text-danger">Введите пароль</div>
                     }
@@ -68,4 +79,6 @@ export default connect()( function Login() {
             </form>
         </div>
     );
-})
+}
+
+export default connect()(LoginComponent);

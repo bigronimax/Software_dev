@@ -1,87 +1,112 @@
 package ru.iu3.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import ru.iu3.backend.models.Artist;
 import ru.iu3.backend.models.Country;
 import ru.iu3.backend.repositories.CountryRepository;
+import ru.iu3.backend.tools.DataValidationException;
 
-
+import javax.validation.Valid;
 import java.util.*;
 
 @RestController
 @RequestMapping("/api/v1")
+
+@CrossOrigin(origins = "http://localhost:3000")
 public class CountryController {
+
     @Autowired
     CountryRepository countryRepository;
 
     @GetMapping("/countries")
-    public List
-    getAllCountries() {
+    public Page<Country> getAllCountries(@RequestParam("page") int page, @RequestParam("limit") int limit) {
+        return countryRepository.findAll(PageRequest.of(page, limit, Sort.by(Sort.Direction.ASC, "name")));
+    }
+    @GetMapping("/allcountries")
+    public List<Country> getAllCountriesNoPagination() {
+        // Просто возвращает все страны без пагинации
         return countryRepository.findAll();
     }
-
-    @GetMapping("/countries/{id}/artists")
-    public ResponseEntity<List<Artist>> getCountryArtists(@PathVariable(value = "id") Long countryId) {
-        Optional<Country> cc = countryRepository.findById(countryId);
-        if (cc.isPresent()) {
-            return ResponseEntity.ok(cc.get().artists);
-        }
-        return ResponseEntity.ok(new ArrayList<Artist>());
+    @GetMapping("/countries/{id}")
+    public ResponseEntity<Country> getCountry(@PathVariable(value = "id") Long countryId)
+            throws DataValidationException {
+        Country country = countryRepository.findById(countryId)
+                .orElseThrow(() -> new DataValidationException("Страна с таким индексом не найдена"));
+        return ResponseEntity.ok(country);
     }
 
-    @PostMapping("/countries")
-    public ResponseEntity<Object> createCountry(@RequestBody Country country)
-            throws Exception {
+    @PostMapping("/country/create")
+    public ResponseEntity<Object> createCountryGet(@RequestParam("name") String name)
+            throws DataValidationException {
         try {
-            Country newCountry = countryRepository.save(country);
-            return new ResponseEntity<Object>(newCountry, HttpStatus.OK);
+            Country country = new Country();
+            country.setName(name);
+            Country nc = countryRepository.save(country);
+            return new ResponseEntity<Object>(nc, HttpStatus.OK);
         }
         catch(Exception ex) {
-            String error;
             if (ex.getMessage().contains("countries.name_UNIQUE"))
-                error = "county_already_exists";
+                throw new DataValidationException("Эта страна уже есть в базе");
             else
-                error = "undefined_error";
-            Map<String, String>
-                    map =  new HashMap<>();
-            map.put("error", error);
-            return ResponseEntity.ok(map);
+                throw new DataValidationException("Неизвестная ошибка");
         }
     }
 
-    @PutMapping("/countries/{id}")
-    public ResponseEntity<Country> updateCountry(@PathVariable(value = "id") Long countryId,
-                                                 @RequestBody Country countryDetails) {
-        Country country = null;
-        Optional<Country>
-                cc = countryRepository.findById(countryId);
-        if (cc.isPresent()) {
-            country = cc.get();
-            country.name = countryDetails.name;
+    @PutMapping("/country/update/{id}")
+    public ResponseEntity<Country> updateCountryGet(
+            @PathVariable(value = "id") Long countryId,
+            @RequestParam("name") String name)
+            throws DataValidationException {
+        try {
+            Country country = countryRepository.findById(countryId)
+                    .orElseThrow(() -> new DataValidationException("Страна с таким индексом не найдена"));
+            country.setName(name);
             countryRepository.save(country);
             return ResponseEntity.ok(country);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "country not found");
+        }
+        catch (Exception ex) {
+            if (ex.getMessage().contains("countries.name_UNIQUE"))
+                throw new DataValidationException("Эта страна уже есть в базе");
+            else
+                throw new DataValidationException("Неизвестная ошибка");
         }
     }
 
-    @DeleteMapping("/countries/{id}")
-    public ResponseEntity<Object> deleteCountry(@PathVariable(value = "id") Long countryId) {
-        Optional<Country>
-                country = countryRepository.findById(countryId);
-        Map<String, Boolean>
-                resp = new HashMap<>();
-        if (country.isPresent()) {
-            countryRepository.delete(country.get());
-            resp.put("deleted", Boolean.TRUE);
+    @PostMapping("/deletecountries")
+    public ResponseEntity<?> deleteCountries(@Valid @RequestBody List<Country> countries) {
+        countryRepository.deleteAll(countries);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @DeleteMapping("/country/delete-by-id")
+    public ResponseEntity<?> deleteCountriesById(@RequestParam("ids") List<Long> ids) {
+        try {
+            // Загружаем все страны по ID
+            List<Country> countries = new ArrayList<>();
+            for (Long id : ids) {
+                countryRepository.findById(id).ifPresent(countries::add);
+            }
+
+            // Удаляем загруженные страны
+            if (!countries.isEmpty()) {
+                countryRepository.deleteAll(countries);
+            }
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch(Exception ex) {
+            // Логирование ошибки для диагностики
+            ex.printStackTrace();
+            return new ResponseEntity<>(
+                    Map.of("error", ex.getMessage()),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        else
-            resp.put("deleted", Boolean.FALSE);
-        return ResponseEntity.ok(resp);
     }
 }
-

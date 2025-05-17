@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faHome, faUser} from '@fortawesome/free-solid-svg-icons'
+import {faBars, faHome, faUser} from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import Utils from "../utils/Utils";
@@ -34,7 +34,11 @@ class NavigationBarClass extends React.Component {
     render() {
         return (
             <Navbar bg="light" expand="lg">
-                <Navbar.Brand><FontAwesomeIcon icon={faHome} />{' '}My RPO</Navbar.Brand>
+                <button type="button"
+                        className="btn btn-outline-secondary mr-2"
+                        onClick={this.props.toggleSideBar}>
+                    <FontAwesomeIcon icon={faBars} />
+                </button>
                 <Navbar.Brand>myRPO</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -42,7 +46,6 @@ class NavigationBarClass extends React.Component {
                         {/*<Nav.Link href="/home">Home</Nav.Link>*/}
                         <Nav.Link as={Link} to="/home">Home</Nav.Link>
                         <Nav.Link onClick={this.goHome}>Another home</Nav.Link>
-                        <Nav.Link onClick={() => { this.props.history.push("/home")}} >Yet another home</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 <Navbar.Text>{this.props.user && this.props.user.login}</Navbar.Text>

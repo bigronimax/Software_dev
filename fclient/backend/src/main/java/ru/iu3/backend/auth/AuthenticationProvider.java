@@ -37,11 +37,12 @@ public class AuthenticationProvider extends AbstractUserDetailsAuthenticationPro
             throws AuthenticationException {
 
         Object token = usernamePasswordAuthenticationToken.getCredentials();
-        Optional<ru.iu3.backend.models.User> uu = userRepository.findByToken(String.valueOf(token));
-        if (!uu.isPresent())
+        System.out.println(token);
+        ru.iu3.backend.models.User u = userRepository.findByToken(String.valueOf(token));
+        if (u == null) {
+            System.out.println("YES");
             throw new UsernameNotFoundException("user is not found");
-        ru.iu3.backend.models.User u = uu.get();
-
+        }
         boolean timeout = true;
         LocalDateTime dt  = LocalDateTime.now();
 

@@ -11,6 +11,7 @@ import ru.iu3.backend.repositories.UserRepository;
 import ru.iu3.backend.tools.Utils;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -26,42 +27,39 @@ public class LoginController {
     public ResponseEntity<Object> login(@RequestBody Map<String, String> credentials) {
         String login = credentials.get("login");
         String pwd = credentials.get("password");
-        String hash = Utils.ComputeHash(pwd, "00");
-        System.out.println(hash);
-        if (pwd.isEmpty() || login.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid login or password");
-        } else {
-            Optional<User> optionalUser = userRepository.findByLogin(login);
-            if (optionalUser.isPresent()) {
-                User user = optionalUser.get();
-                String hashedPassword = user.password;
-                String salt = user.salt;
-                String computedHash = Utils.ComputeHash(pwd, salt);
-                System.out.println(computedHash);
-                if (hashedPassword.equalsIgnoreCase(computedHash)) {
+
+        if (pwd != null && !pwd.isEmpty() && login != null && !login.isEmpty()) {
+            User user = userRepository.findByLogin(login);
+
+            if (user != null) {
+                String hash1 = user.getPassword();
+                String salt = user.getSalt();
+                String hash2 = Utils.ComputeHash(pwd, salt);
+
+                if (hash1.toLowerCase().equals(hash2.toLowerCase())) {
                     String token = UUID.randomUUID().toString();
-                    user.token = token;
-                    user.activity = LocalDateTime.now();
+                    user.setToken(token);
+                    System.out.println(token);
+                    user.setActivity(LocalDateTime.now());
                     User savedUser = userRepository.saveAndFlush(user);
-                    return new ResponseEntity<Object>(savedUser, HttpStatus.OK);
+                    return new ResponseEntity<>(savedUser, HttpStatus.OK);
                 }
             }
         }
-        return new ResponseEntity<Object>(HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     @GetMapping("/logout")
-    public ResponseEntity<String> logout(@RequestHeader(value = "Authorization", required = false) String token) {
+    public ResponseEntity<Object> logout(@RequestHeader(value = "Authorization", required = false) String token) {
         if (token != null && !token.isEmpty()) {
             token = StringUtils.removeStart(token, "Bearer").trim();
-            Optional<User> optionalUser = userRepository.findByToken(token);
-            if (optionalUser.isPresent()) {
-                User user = optionalUser.get();
-                user.token = null;
+            User user = userRepository.findByToken(token);
+            if (user != null) {
+                user.setToken(null);
                 userRepository.save(user);
-                return new ResponseEntity<String>(HttpStatus.OK);
+                return new ResponseEntity<>(HttpStatus.OK);
             }
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 }
